@@ -1,0 +1,6 @@
+{
+  "name": "BSP 3-Years - School Strategic Budget Plan",
+  "description": "ប្រព័ន្ធគ្រប់គ្រង និងតាមដានផែនការយុទ្ធសាស្ត្រថវិការយៈពេល ៣ ឆ្នាំ (BSP) និងសូចនាករគោលដៅសមិទ្ធកម្មសាលារៀន ក្រសួងអប់រំ យុវជន និងកីឡា (MoEYS)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

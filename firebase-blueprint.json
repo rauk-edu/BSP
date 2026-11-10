@@ -1,0 +1,71 @@
+{
+  "entities": {
+    "bsp_plan": {
+      "title": "BSP Plan",
+      "description": "3-Year Budget Strategic Plan and School Performance Indicators document for a school cycle",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the plan"
+        },
+        "schoolCode": {
+          "type": "string",
+          "description": "School identification code"
+        },
+        "schoolName": {
+          "type": "string",
+          "description": "Name of the school"
+        },
+        "cycleTitle": {
+          "type": "string",
+          "description": "Title of the strategic planning cycle (e.g. 2026-2029)"
+        },
+        "startYear": {
+          "type": "number",
+          "description": "Starting academic year"
+        },
+        "endYear": {
+          "type": "number",
+          "description": "Ending academic year"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "archived", "draft"],
+          "description": "Status of the plan"
+        },
+        "schoolProfile": {
+          "type": "object",
+          "description": "School metadata and principal info"
+        },
+        "doc": {
+          "type": "object",
+          "description": "The 6 national chapters report and commune investment proposal"
+        },
+        "table1Rows": {
+          "type": "array",
+          "description": "Performance indicator rows"
+        },
+        "table2Rows": {
+          "type": "array",
+          "description": "Financial activities and 3-year credit requirements"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["id", "schoolName", "cycleTitle", "status"]
+    }
+  },
+  "firestore": {
+    "/bsp_plans/{planId}": {
+      "schema": "bsp_plan",
+      "description": "Collection of school 3-year strategic budget plans by cycle"
+    }
+  }
+}
