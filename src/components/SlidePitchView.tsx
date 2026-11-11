@@ -31,7 +31,6 @@ import {
   ArrowRight,
   Volume2,
 } from 'lucide-react';
-import { FormattedKhmerText } from './FormattedKhmerText';
 
 interface SlidePitchViewProps {
   doc: StrategicDocument;
@@ -326,13 +325,9 @@ export const SlidePitchView: React.FC<SlidePitchViewProps> = ({
                     <Building2 className="w-4 h-4 text-indigo-600" />
                     <span>២. សាវតាសាលារៀន និងទិន្នន័យជាក់ស្តែង</span>
                   </div>
-                  <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
-                    <FormattedKhmerText
-                      text={doc.schoolBackground.history}
-                      mode="full"
-                      paragraphClassName="text-xs leading-relaxed"
-                    />
-                  </div>
+                  <p className="text-xs text-slate-700 leading-relaxed">
+                    {doc.schoolBackground.history}
+                  </p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                     <div className="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
                       <div className="text-[10px] text-slate-500">សិស្សសរុប</div>
@@ -416,14 +411,11 @@ export const SlidePitchView: React.FC<SlidePitchViewProps> = ({
                         ជោគជ័យ {std.progressItems.length} ចំណុច
                       </span>
                     </div>
-                    <div className="space-y-1.5 pl-1 pt-1">
+                    <ul className="pl-6 list-disc space-y-1 text-xs text-slate-700">
                       {std.progressItems.map((item, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs text-slate-700 leading-relaxed">
-                          <span className="shrink-0 font-bold text-emerald-600 select-none leading-relaxed">-</span>
-                          <span className="flex-1 leading-relaxed text-justify">{item}</span>
-                        </div>
+                        <li key={i}>{item}</li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 );
               })}
@@ -452,14 +444,11 @@ export const SlidePitchView: React.FC<SlidePitchViewProps> = ({
                         </h4>
                       </div>
                     </div>
-                    <div className="space-y-1.5 pl-1 pt-1">
+                    <ul className="pl-6 list-disc space-y-1 text-xs text-slate-800">
                       {std.challengeItems.map((item, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs text-slate-800 leading-relaxed">
-                          <span className="shrink-0 font-bold text-rose-600 select-none leading-relaxed">-</span>
-                          <span className="flex-1 leading-relaxed text-justify">{item}</span>
-                        </div>
+                        <li key={i}>{item}</li>
                       ))}
-                    </div>
+                    </ul>
                     {/* Commune Call to action chip */}
                     <div className="mt-2 pt-2 border-t border-rose-200/60 flex items-center gap-2 text-xs font-medium text-indigo-900 bg-white/80 p-2 rounded-lg">
                       <Sparkles className="w-3.5 h-3.5 text-indigo-600 shrink-0" />

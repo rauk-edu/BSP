@@ -18,11 +18,7 @@ import {
   X,
   Zap,
   ArrowRight,
-  ListPlus,
-  Check,
 } from 'lucide-react';
-import { FormattedKhmerText } from './FormattedKhmerText';
-import { normalizeKhmerBulletString } from '../utils/khmerTextFormatter';
 import { parseNumber, formatRiel, computeTable1Summaries } from '../utils/bspUtils';
 
 interface Table1ViewProps {
@@ -43,21 +39,6 @@ export const Table1View: React.FC<Table1ViewProps> = ({
   const [showDisaggregation, setShowDisaggregation] = useState(true);
   const [collapsedStandards, setCollapsedStandards] = useState<Record<number, boolean>>({});
   const [editingModalRow, setEditingModalRow] = useState<IndicatorRow | null>(null);
-  const [expandReasonBullets, setExpandReasonBullets] = useState<boolean>(true);
-
-  // Auto clean chained inline dashes in reason column across all rows
-  const handleAutoCleanAllReasons = () => {
-    let count = 0;
-    rows.forEach((r) => {
-      if (r.reasonChangeNPlus1 && (r.reasonChangeNPlus1.includes(' - ') || r.reasonChangeNPlus1.includes('&bull;'))) {
-        const cleaned = normalizeKhmerBulletString(r.reasonChangeNPlus1);
-        if (cleaned && cleaned !== r.reasonChangeNPlus1) {
-          onUpdateRow(r.id, 'reasonChangeNPlus1', cleaned);
-          count++;
-        }
-      }
-    });
-  };
 
   // Summaries
   const summaries = useMemo(() => computeTable1Summaries(rows), [rows]);
@@ -238,28 +219,6 @@ export const Table1View: React.FC<Table1ViewProps> = ({
                 </button>
               )}
             </div>
-
-            <button
-              onClick={() => setExpandReasonBullets(!expandReasonBullets)}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
-                expandReasonBullets
-                  ? 'bg-amber-50 text-amber-900 border-amber-300'
-                  : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
-              }`}
-              title="បិទ/បើក ការទម្លាក់បន្ទាត់សញ្ញាដក (-) និងតម្រឹមអក្សរចូលក្នុងតារាង"
-            >
-              <ListPlus className="w-3.5 h-3.5 text-amber-600" />
-              <span>{expandReasonBullets ? 'ទម្លាក់បន្ទាត់ (-)៖ បើក' : 'ទម្លាក់បន្ទាត់ (-)៖ បង្រួម'}</span>
-            </button>
-
-            <button
-              onClick={handleAutoCleanAllReasons}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-colors cursor-pointer"
-              title="បំបែកសញ្ញាដក (-) ជាប់គ្នា ឱ្យចុះបន្ទាត់ថ្មីគ្រប់សូចនាករក្នុងតារាង"
-            >
-              <Zap className="w-3 h-3 text-indigo-600" />
-              <span>ទម្លាក់បន្ទាត់ (-) គ្រប់ជួរ</span>
-            </button>
 
             <button
               onClick={() => setShowDisaggregation(!showDisaggregation)}

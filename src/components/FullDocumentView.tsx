@@ -29,11 +29,7 @@ import {
   Trash2,
   ExternalLink,
   Sparkles,
-  AlignLeft,
-  Check,
 } from 'lucide-react';
-import { FormattedKhmerText } from './FormattedKhmerText';
-import { normalizeKhmerBulletString } from '../utils/khmerTextFormatter';
 
 interface FullDocumentViewProps {
   doc: StrategicDocument;
@@ -57,7 +53,6 @@ export const FullDocumentView: React.FC<FullDocumentViewProps> = ({
   onOpenAICopilot,
 }) => {
   const [activeTab, setActiveTab] = useState<number>(1);
-  const [isEditingHistory, setIsEditingHistory] = useState<boolean>(false);
   const t1Summaries = computeTable1Summaries(table1Rows);
   const t2Summaries = computeTable2Summaries(table2Rows);
 
@@ -154,89 +149,26 @@ export const FullDocumentView: React.FC<FullDocumentViewProps> = ({
 
           {/* ១.២ សាវតារបស់សាលារៀន */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
-              <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
-                <Building2 className="w-5 h-5 text-sky-600" />
-                <span>១.២ សាវតារបស់សាលារៀន និងទិន្នន័យជាក់ស្តែង (School Background & Profile)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    const cleaned = normalizeKhmerBulletString(doc.schoolBackground.history);
-                    if (cleaned && cleaned !== doc.schoolBackground.history) {
-                      onUpdateDoc({
-                        schoolBackground: { ...doc.schoolBackground, history: cleaned },
-                      });
-                    }
-                  }}
-                  className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-lg border border-indigo-200 transition-colors cursor-pointer"
-                  title="បំបែកសញ្ញាដក (-) ជាប់គ្នា ឱ្យចុះបន្ទាត់ថ្មីដោយស្វ័យប្រវត្តិ"
-                >
-                  <Sparkles className="w-3 h-3 text-indigo-600" />
-                  <span>ទម្លាក់បន្ទាត់សញ្ញា (-) ស្វ័យប្រវត្តិ</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsEditingHistory(!isEditingHistory)}
-                  className={`flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-lg border transition-colors cursor-pointer ${
-                    isEditingHistory
-                      ? 'bg-amber-100 text-amber-900 border-amber-300'
-                      : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
-                  }`}
-                >
-                  {isEditingHistory ? (
-                    <>
-                      <Check className="w-3 h-3 text-emerald-600" />
-                      <span>មើលទម្រង់ស្អាត</span>
-                    </>
-                  ) : (
-                    <>
-                      <Edit3 className="w-3 h-3 text-slate-500" />
-                      <span>កែសម្រួលអត្ថបទ</span>
-                    </>
-                  )}
-                </button>
-              </div>
+            <div className="flex items-center gap-2 pb-3 border-b border-slate-100 font-bold text-slate-900 text-sm">
+              <Building2 className="w-5 h-5 text-sky-600" />
+              <span>១.២ សាវតារបស់សាលារៀន និងទិន្នន័យជាក់ស្តែង (School Background & Profile)</span>
             </div>
 
             <div className="space-y-3 text-xs">
               <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-slate-700 font-semibold">
-                    ប្រវត្តិ និងការវិវត្តរបស់សាលារៀន (ចូលកថាខណ្ឌ & ទម្លាក់សញ្ញា - មិនឱ្យស្មើគ្នា)
-                  </label>
-                  <span className="text-[11px] text-slate-400">
-                    {isEditingHistory ? 'កំពុងកែសម្រួល...' : 'ទិដ្ឋភាពទម្រង់ស្អាត'}
-                  </span>
-                </div>
-
-                {isEditingHistory ? (
-                  <div className="space-y-2">
-                    <textarea
-                      rows={8}
-                      value={doc.schoolBackground.history}
-                      onChange={(e) =>
-                        onUpdateDoc({
-                          schoolBackground: { ...doc.schoolBackground, history: e.target.value },
-                        })
-                      }
-                      placeholder="បញ្ចូលប្រវត្តិសាលា... (ប្រើសញ្ញា - សម្រាប់ព្រឹត្តិការណ៍នីមួយៗ)"
-                      className="w-full p-3 text-xs border border-slate-300 rounded-xl leading-relaxed focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 focus:outline-none font-sans"
-                    />
-                    <p className="text-[11px] text-slate-500 italic">
-                      ចំណាំ៖ អ្នកអាចចុចប៊ូតុង «ទម្លាក់បន្ទាត់សញ្ញា (-) ស្វ័យប្រវត្តិ» ខាងលើ ដើម្បីបំបែកចំណុចដកដែលជាប់គ្នាជាបន្ទាត់ដាច់ដោយឡែក។
-                    </p>
-                  </div>
-                ) : (
-                  <div className="p-4 bg-slate-50/70 border border-slate-200 rounded-xl">
-                    <FormattedKhmerText
-                      text={doc.schoolBackground.history}
-                      mode="full"
-                      paragraphClassName="text-slate-800 leading-relaxed text-xs"
-                    />
-                  </div>
-                )}
+                <label className="block text-slate-700 font-semibold mb-1">
+                  ប្រវត្តិ និងការវិវត្តរបស់សាលារៀន
+                </label>
+                <textarea
+                  rows={4}
+                  value={doc.schoolBackground.history}
+                  onChange={(e) =>
+                    onUpdateDoc({
+                      schoolBackground: { ...doc.schoolBackground, history: e.target.value },
+                    })
+                  }
+                  className="w-full p-3 text-xs border border-slate-300 rounded-xl leading-relaxed focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 focus:outline-none"
+                />
               </div>
 
               {/* Statistics Grid */}
