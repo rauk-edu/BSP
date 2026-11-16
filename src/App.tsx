@@ -22,9 +22,12 @@ import { FullDocumentView } from './components/FullDocumentView';
 import { DocumentDrawer, DocumentSectionTarget } from './components/DocumentDrawer';
 import { Table1View } from './components/Table1View';
 import { Table2View } from './components/Table2View';
+import { AopTable1View } from './components/AopTable1View';
+import { AopIndicatorRow, buildAopRowsFromBsp } from './data/aopData';
 import { DashboardView } from './components/DashboardView';
 import { ProfileView } from './components/ProfileView';
 import { PrintView } from './components/PrintView';
+import { PrintSettingsModal, PrintSettings, DEFAULT_PRINT_SETTINGS } from './components/PrintSettingsModal';
 import { FirestoreSyncModal } from './components/FirestoreSyncModal';
 import { AICopilotModal } from './components/AICopilotModal';
 import { Sparkles } from 'lucide-react';
@@ -36,6 +39,7 @@ const STORAGE_KEYS = {
   TABLE2: 'bsp_3years_table2_v1',
   PROFILE: 'bsp_3years_profile_v1',
   DOC: 'bsp_3years_doc_v1',
+  AOP: 'aop_1year_table1_v1',
 };
 
 export default function App() {
@@ -44,6 +48,16 @@ export default function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isFirestoreModalOpen, setIsFirestoreModalOpen] = useState(false);
   const [isAICopilotOpen, setIsAICopilotOpen] = useState(false);
+  const [isPrintSettingsOpen, setIsPrintSettingsOpen] = useState(false);
+  const [printSettings, setPrintSettings] = useState<PrintSettings>(() => {
+    try {
+      const saved = localStorage.getItem('bsp_3years_print_settings_v1');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.error('Failed to load print settings', e);
+    }
+    return DEFAULT_PRINT_SETTINGS;
+  });
   const [activeSection, setActiveSection] = useState<DocumentSectionTarget>({
     chapter: 1,
   });
@@ -94,6 +108,17 @@ export default function App() {
     return DEFAULT_STRATEGIC_DOCUMENT;
   });
 
+  // Annual Operational Plan (AOP) Indicator Rows copied from 3-Year BSP
+  const [aopRows, setAopRows] = useState<AopIndicatorRow[]>(() => {
+    try {
+      const savedAop = localStorage.getItem(STORAGE_KEYS.AOP);
+      if (savedAop) return JSON.parse(savedAop);
+    } catch (e) {
+      console.error('Failed to load AOP data from localStorage', e);
+    }
+    return buildAopRowsFromBsp(table1Rows, table2Rows);
+  });
+
   // Test Firestore connection on boot
   useEffect(() => {
     testConnection();
@@ -106,11 +131,26 @@ export default function App() {
       localStorage.setItem(STORAGE_KEYS.TABLE2, JSON.stringify(table2Rows));
       localStorage.setItem(STORAGE_KEYS.PROFILE, JSON.stringify(schoolProfile));
       localStorage.setItem(STORAGE_KEYS.DOC, JSON.stringify(doc));
+      localStorage.setItem(STORAGE_KEYS.AOP, JSON.stringify(aopRows));
       setIsSaved(true);
     } catch (e) {
       console.error('Auto-save error', e);
     }
-  }, [table1Rows, table2Rows, schoolProfile, doc]);
+  }, [table1Rows, table2Rows, schoolProfile, doc, aopRows]);
+
+  // Sync AOP data directly from current BSP Table 1 and Table 2
+  const handleSyncAopFromBsp = () => {
+    const updatedAop = buildAopRowsFromBsp(table1Rows, table2Rows);
+    setAopRows(updatedAop);
+    setIsSaved(false);
+  };
+
+  const handleUpdateAopRow = (id: string, field: keyof AopIndicatorRow, value: string) => {
+    setIsSaved(false);
+    setAopRows((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, [field]: value } : r))
+    );
+  };
 
   // Update Table 1 row (with auto-sync into Table 2 for budget fields)
   const handleUpdateTable1Row = (id: string, field: keyof IndicatorRow, value: string) => {
@@ -219,7 +259,29 @@ export default function App() {
 
   // Export CSV
   const handleExportCSV = () => {
-    if (activeTab === 'table2') {
+    if (activeTab === 'aop') {
+      const headers = [
+        'ល.រ',
+        'ស្តង់ដា និងសូចនាករ',
+        'ឯកតា',
+        `លទ្ធផលសូចនាករឆ្នាំបច្ចុប្បន្ន N (${schoolProfile.yearN})`,
+        `គោលដៅសូចនាករគ្រោងថវិកា N+1 (${schoolProfile.yearN1})`,
+        `ថវិការដ្ឋ ឆ្នាំ N+1 (${schoolProfile.yearN1})`,
+        `ថវិកាក្រៅពីរដ្ឋ ឆ្នាំ N+1 (${schoolProfile.yearN1})`,
+        `ថវិកាសរុប ឆ្នាំ N+1 (${schoolProfile.yearN1})`,
+      ];
+      const rows = aopRows.map((r) => [
+        r.code,
+        r.title,
+        r.unit,
+        r.currentResultN,
+        r.targetBudgetN1,
+        r.stateBudgetN1,
+        r.nonStateBudgetN1,
+        r.totalBudgetN1,
+      ]);
+      exportToCSV(`AOP_Indicators_${schoolProfile.yearN1}.csv`, headers, rows);
+    } else if (activeTab === 'table2') {
       const headers = [
         'ល.រ',
         'សកម្មភាព',
@@ -343,17 +405,38 @@ export default function App() {
       const resetT2 = syncTable1ToTable2(resetT1, INITIAL_TABLE2_DATA);
       setTable1Rows(resetT1);
       setTable2Rows(resetT2);
+      setAopRows(buildAopRowsFromBsp(resetT1, resetT2));
       setSchoolProfile(DEFAULT_SCHOOL_PROFILE);
       setDoc(DEFAULT_STRATEGIC_DOCUMENT);
       localStorage.removeItem(STORAGE_KEYS.TABLE1);
       localStorage.removeItem(STORAGE_KEYS.TABLE2);
       localStorage.removeItem(STORAGE_KEYS.PROFILE);
       localStorage.removeItem(STORAGE_KEYS.DOC);
+      localStorage.removeItem(STORAGE_KEYS.AOP);
     }
   };
 
-  const handlePrint = () => {
-    window.print();
+  const handleOpenPrintSettings = () => {
+    setIsPrintSettingsOpen(true);
+  };
+
+  const handleUpdatePrintSettings = (updated: Partial<PrintSettings>) => {
+    setPrintSettings((prev) => {
+      const next = { ...prev, ...updated };
+      try {
+        localStorage.setItem('bsp_3years_print_settings_v1', JSON.stringify(next));
+      } catch (e) {
+        console.error('Failed to save print settings', e);
+      }
+      return next;
+    });
+  };
+
+  const handleExecutePrint = () => {
+    setIsPrintSettingsOpen(false);
+    setTimeout(() => {
+      window.print();
+    }, 150);
   };
 
   return (
@@ -368,7 +451,7 @@ export default function App() {
         onExportJSON={handleExportJSON}
         onImportJSON={handleImportJSON}
         onResetData={handleResetData}
-        onPrint={handlePrint}
+        onPrint={handleOpenPrintSettings}
         isSaved={isSaved}
         onToggleDrawer={() => setIsDrawerOpen(!isDrawerOpen)}
         onOpenFirestoreModal={() => setIsFirestoreModalOpen(true)}
@@ -459,6 +542,17 @@ export default function App() {
           />
         )}
 
+        {/* AOP View: Annual Operational Plan (Table 1: Indicators & 3 Budget Columns) */}
+        {activeTab === 'aop' && (
+          <AopTable1View
+            rows={aopRows}
+            onUpdateRow={handleUpdateAopRow}
+            schoolProfile={schoolProfile}
+            onSyncFromBsp={handleSyncAopFromBsp}
+            onOpenAICopilot={() => setIsAICopilotOpen(true)}
+          />
+        )}
+
         {/* Dashboard View: Analytics & Charts */}
         {activeTab === 'dashboard' && (
           <DashboardView
@@ -491,12 +585,23 @@ export default function App() {
         </button>
       </div>
 
+      {/* Print Settings Modal */}
+      <PrintSettingsModal
+        isOpen={isPrintSettingsOpen}
+        onClose={() => setIsPrintSettingsOpen(false)}
+        settings={printSettings}
+        onUpdateSettings={handleUpdatePrintSettings}
+        onConfirmPrint={handleExecutePrint}
+      />
+
       {/* Official Print Layout (Visible only when printing) */}
       <PrintView
         table1Rows={table1Rows}
         table2Rows={table2Rows}
+        aopRows={aopRows}
         schoolProfile={schoolProfile}
         doc={doc}
+        settings={printSettings}
       />
 
       {/* Footer */}

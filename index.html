@@ -16,17 +16,31 @@
       // Ignore WebSocket disconnection errors in dev iframe environment
       window.addEventListener('unhandledrejection', function(event) {
         var reason = event && event.reason;
-        var msg = (reason && reason.message) || String(reason || '');
-        if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('ws:') !== -1) {
+        var msg = (reason && (reason.message || reason.stack)) || String(reason || '');
+        if (
+          msg.indexOf('WebSocket') !== -1 ||
+          msg.indexOf('ws:') !== -1 ||
+          msg.indexOf('vite/client') !== -1 ||
+          msg.indexOf('@vite/client') !== -1
+        ) {
           event.preventDefault();
+          event.stopImmediatePropagation && event.stopImmediatePropagation();
         }
-      });
+      }, true);
       window.addEventListener('error', function(event) {
-        var msg = (event && event.message) || '';
-        if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('ws:') !== -1) {
+        var msg = (event && (event.message || event.filename)) || '';
+        var errStr = String(msg || '');
+        if (
+          errStr.indexOf('WebSocket') !== -1 ||
+          errStr.indexOf('ws:') !== -1 ||
+          errStr.indexOf('vite/client') !== -1 ||
+          errStr.indexOf('@vite/client') !== -1
+        ) {
           event.preventDefault();
+          event.stopImmediatePropagation && event.stopImmediatePropagation();
+          return true;
         }
-      });
+      }, true);
     </script>
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased font-sans">

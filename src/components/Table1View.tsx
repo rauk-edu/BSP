@@ -18,7 +18,11 @@ import {
   X,
   Zap,
   ArrowRight,
+  ListPlus,
+  Check,
 } from 'lucide-react';
+import { FormattedKhmerText } from './FormattedKhmerText';
+import { normalizeKhmerBulletString } from '../utils/khmerTextFormatter';
 import { parseNumber, formatRiel, computeTable1Summaries } from '../utils/bspUtils';
 
 interface Table1ViewProps {
@@ -39,6 +43,31 @@ export const Table1View: React.FC<Table1ViewProps> = ({
   const [showDisaggregation, setShowDisaggregation] = useState(true);
   const [collapsedStandards, setCollapsedStandards] = useState<Record<number, boolean>>({});
   const [editingModalRow, setEditingModalRow] = useState<IndicatorRow | null>(null);
+  const [cleanedToast, setCleanedToast] = useState(false);
+
+  // Auto clean chained inline dashes, bullets, and middle dots in reason column across all rows
+  const handleAutoCleanAllReasons = () => {
+    let count = 0;
+    rows.forEach((r) => {
+      if (
+        r.reasonChangeNPlus1 &&
+        (r.reasonChangeNPlus1.includes(' - ') ||
+          r.reasonChangeNPlus1.includes('&bull;') ||
+          r.reasonChangeNPlus1.includes('&middot;') ||
+          r.reasonChangeNPlus1.includes('•') ||
+          r.reasonChangeNPlus1.includes('·') ||
+          r.reasonChangeNPlus1.includes('។ -'))
+      ) {
+        const cleaned = normalizeKhmerBulletString(r.reasonChangeNPlus1);
+        if (cleaned && cleaned !== r.reasonChangeNPlus1) {
+          onUpdateRow(r.id, 'reasonChangeNPlus1', cleaned);
+          count++;
+        }
+      }
+    });
+    setCleanedToast(true);
+    setTimeout(() => setCleanedToast(false), 2500);
+  };
 
   // Summaries
   const summaries = useMemo(() => computeTable1Summaries(rows), [rows]);
@@ -135,9 +164,10 @@ export const Table1View: React.FC<Table1ViewProps> = ({
             <div className="bg-slate-100 border border-slate-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
               <Layers className="w-4 h-4 text-slate-600" />
               <div>
-                <div className="text-[10px] text-slate-600 font-medium">សូចនាករដែលបង្ហាញ</div>
-                <div className="text-sm font-bold text-slate-800 font-mono">
-                  {filteredRows.filter((r) => r.category === 'SUB_INDICATOR' || r.category === 'KEY_INDICATOR').length}
+                <div className="text-[10px] text-slate-600 font-medium">សូចនាករតាមគោលការណ៍</div>
+                <div className="text-xs font-bold text-slate-900 font-mono">
+                  <span className="text-indigo-700">២៦ គន្លឹះ</span> + <span className="text-emerald-700">៧០ រង</span>
+                  <span className="text-[10px] font-normal text-slate-500 ml-1">(សរុប ៩៦)</span>
                 </div>
               </div>
             </div>
@@ -174,7 +204,7 @@ export const Table1View: React.FC<Table1ViewProps> = ({
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              ទាំងអស់ ({rows.filter((r) => r.category === 'SUB_INDICATOR').length})
+              ទាំងអស់ (២៦ គន្លឹះ + ៧០ រង)
             </button>
 
             {STANDARDS_META.map((std) => {
@@ -219,6 +249,21 @@ export const Table1View: React.FC<Table1ViewProps> = ({
                 </button>
               )}
             </div>
+
+            <button
+              onClick={handleAutoCleanAllReasons}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 transition-colors cursor-pointer"
+              title="រៀបចំអត្ថបទ៖ បំបែកសញ្ញាដក (-) និងគ្រាប់ចុច ឱ្យចុះបន្ទាត់ថ្មីយ៉ាងស្អាតគ្រប់ជួរក្នុងតារាង"
+            >
+              <Zap className="w-3 h-3 text-indigo-600" />
+              <span>រៀបចំអត្ថបទឱ្យស្អាត (ទម្លាក់បន្ទាត់)</span>
+            </button>
+            {cleanedToast && (
+              <span className="text-[11px] text-emerald-700 font-semibold bg-emerald-50 border border-emerald-200 px-2 py-1 rounded flex items-center gap-1 animate-fadeIn">
+                <Check className="w-3 h-3 text-emerald-600" />
+                <span>បានរៀបចំស្អាតរួចរាល់!</span>
+              </span>
+            )}
 
             <button
               onClick={() => setShowDisaggregation(!showDisaggregation)}
@@ -494,12 +539,26 @@ export const Table1View: React.FC<Table1ViewProps> = ({
                           className="w-full text-right px-1.5 py-1 text-xs font-mono font-semibold text-amber-900 bg-transparent rounded hover:bg-white focus:bg-white focus:outline-none focus:ring-1 focus:ring-amber-500"
                         />
                       </td>
-                      <td className="border border-slate-300 px-2 py-1 text-slate-600 text-[11px] relative group">
-                        <div className="flex items-center justify-between gap-1">
-                          <span className="truncate max-w-[180px]">{row.reasonChangeNPlus1 || '-'}</span>
+                      <td className="border border-slate-300 px-2.5 py-1.5 text-slate-700 text-[11px] relative group align-top min-w-[220px]">
+                        <div className="flex items-start justify-between gap-1.5">
+                          <div
+                            className="flex-1 cursor-pointer hover:text-slate-900 transition-colors"
+                            onClick={() => setEditingModalRow(row)}
+                            title="ចុចដើម្បីកែសម្រួលមូលហេតុ"
+                          >
+                            {row.reasonChangeNPlus1 ? (
+                              <FormattedKhmerText
+                                text={row.reasonChangeNPlus1}
+                                mode="table-cell"
+                                className="text-[11px]"
+                              />
+                            ) : (
+                              <span className="text-slate-400 italic">-</span>
+                            )}
+                          </div>
                           <button
                             onClick={() => setEditingModalRow(row)}
-                            className="text-slate-400 hover:text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity p-0.5"
+                            className="text-slate-400 hover:text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 cursor-pointer shrink-0 mt-0.5"
                             title="កែសម្រួលមូលហេតុនៃការផ្លាស់ប្តូរ"
                           >
                             <Edit3 className="w-3 h-3" />
@@ -538,8 +597,8 @@ export const Table1View: React.FC<Table1ViewProps> = ({
                       <td className="border border-slate-300 px-2.5 py-1.5 text-center text-slate-600 font-mono text-[11px] bg-slate-50/50">
                         {row.code}
                       </td>
-                      <td className="border border-slate-300 px-3 py-1.5 text-slate-800">
-                        <span className="pl-2">{row.title}</span>
+                      <td className="border border-slate-300 px-3 py-1.5 text-slate-800 align-top">
+                        <span className="inline-block pl-1 font-medium leading-snug text-slate-800">{row.title}</span>
                       </td>
                       <td className="border border-slate-300 px-1 py-1 text-right">
                         <input
@@ -577,18 +636,27 @@ export const Table1View: React.FC<Table1ViewProps> = ({
                           className="w-full text-right px-1.5 py-0.5 text-xs font-mono text-slate-800 bg-transparent rounded hover:bg-white focus:bg-white focus:outline-none focus:ring-1 focus:ring-amber-500"
                         />
                       </td>
-                      <td className="border border-slate-300 px-2 py-1 text-slate-600 text-[11px] relative group">
-                        <div className="flex items-center justify-between gap-1">
-                          <span
-                            className="truncate max-w-[200px] cursor-pointer hover:text-slate-900"
+                      <td className="border border-slate-300 px-2.5 py-1.5 text-slate-700 text-[11px] relative group align-top min-w-[220px]">
+                        <div className="flex items-start justify-between gap-1.5">
+                          <div
+                            className="flex-1 cursor-pointer hover:text-slate-900 transition-colors"
                             onClick={() => setEditingModalRow(row)}
-                            title={row.reasonChangeNPlus1}
+                            title="ចុចដើម្បីកែសម្រួលមូលហេតុ"
                           >
-                            {row.reasonChangeNPlus1 || <span className="text-slate-400 italic">បញ្ចូលមូលហេតុ...</span>}
-                          </span>
+                            {row.reasonChangeNPlus1 ? (
+                              <FormattedKhmerText
+                                text={row.reasonChangeNPlus1}
+                                mode="table-cell"
+                                className="text-[11px]"
+                              />
+                            ) : (
+                              <span className="text-slate-400 italic">បញ្ចូលមូលហេតុ...</span>
+                            )}
+                          </div>
                           <button
                             onClick={() => setEditingModalRow(row)}
-                            className="text-slate-400 hover:text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 cursor-pointer"
+                            className="text-slate-400 hover:text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 cursor-pointer shrink-0 mt-0.5"
+                            title="កែសម្រួលមូលហេតុ"
                           >
                             <Edit3 className="w-3 h-3" />
                           </button>

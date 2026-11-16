@@ -14,10 +14,11 @@ import {
   Menu,
   Cloud,
   Sparkles,
+  Calendar,
 } from 'lucide-react';
 import { SchoolProfile } from '../data/bspData';
 
-export type AppMode = 'slide' | 'document' | 'table1' | 'table2' | 'dashboard' | 'profile';
+export type AppMode = 'slide' | 'document' | 'table1' | 'table2' | 'aop' | 'dashboard' | 'profile';
 
 interface HeaderProps {
   activeTab: AppMode;
@@ -184,13 +185,14 @@ export const Header: React.FC<HeaderProps> = ({
             <RotateCcw className="w-3.5 h-3.5" />
           </button>
 
-          {/* Print */}
+          {/* Print & PDF Settings */}
           <button
             onClick={onPrint}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium shadow-xs transition-colors cursor-pointer"
+            title="កំណត់ការបោះពុម្ព៖ ទំហំអក្សរ ក្រដាសផ្ដេក/បញ្ឈរ គេម និងបោះពុម្ពជា PDF"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors cursor-pointer"
           >
-            <Printer className="w-3.5 h-3.5" />
-            <span>បោះពុម្ព</span>
+            <Printer className="w-3.5 h-3.5 text-amber-300" />
+            <span>បោះពុម្ព / PDF</span>
           </button>
         </div>
       </div>
@@ -248,6 +250,23 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <FileSpreadsheet className="w-4 h-4 text-sky-600" />
             <span>៥. ថវិកា ៣ ឆ្នាំ (តារាងទី២)</span>
+          </button>
+
+          {/* Mode 4.5: AOP Annual Operational Plan */}
+          <button
+            onClick={() => setActiveTab('aop')}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors whitespace-nowrap cursor-pointer ${
+              activeTab === 'aop'
+                ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-xs font-semibold ring-1 ring-emerald-500/20'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }`}
+            title="ផែនការប្រតិបត្តិប្រចាំឆ្នាំ (AOP - Annual Operational Plan)"
+          >
+            <Calendar className="w-4 h-4 text-emerald-600" />
+            <span className="font-semibold text-emerald-800">ផែនការប្រតិបត្តិ (AOP)</span>
+            <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-mono font-bold">
+              ថ្មី
+            </span>
           </button>
 
           {/* Mode 5: Analytics Dashboard */}
