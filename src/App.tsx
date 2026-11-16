@@ -32,7 +32,12 @@ import { FirestoreSyncModal } from './components/FirestoreSyncModal';
 import { AICopilotModal } from './components/AICopilotModal';
 import { Sparkles } from 'lucide-react';
 import { BspPlanRecord, testConnection } from './firebase';
-import { exportToCSV, syncTable1ToTable2, syncTable2ToTable1 } from './utils/bspUtils';
+import {
+  exportToCSV,
+  syncTable1ToTable2,
+  syncTable2ToTable1,
+  applyTable2NextYearToTable1,
+} from './utils/bspUtils';
 
 const STORAGE_KEYS = {
   TABLE1: 'bsp_3years_table1_v1',
@@ -74,18 +79,26 @@ export default function App() {
   });
 
   const [table2Rows, setTable2Rows] = useState<ActivityBudgetRow[]>(() => {
-    let t1 = INITIAL_TABLE1_DATA;
-    let t2 = INITIAL_TABLE2_DATA;
     try {
-      const savedT1 = localStorage.getItem(STORAGE_KEYS.TABLE1);
-      if (savedT1) t1 = JSON.parse(savedT1);
       const savedT2 = localStorage.getItem(STORAGE_KEYS.TABLE2);
-      if (savedT2) t2 = JSON.parse(savedT2);
+      if (savedT2) {
+        const parsed: ActivityBudgetRow[] = JSON.parse(savedT2);
+        const hasActivityData = parsed.some(
+          (r) =>
+            r.category === 'ACTIVITY' &&
+            (r.yearN.state ||
+              r.yearN1.state ||
+              r.yearN2.state ||
+              r.yearN3.state ||
+              r.yearN.partner ||
+              r.yearN1.partner)
+        );
+        if (hasActivityData) return parsed;
+      }
     } catch (e) {
       console.error('Failed to load table 2 data from localStorage', e);
     }
-    // Auto-sync Table 1 state budget columns into Table 2
-    return syncTable1ToTable2(t1, t2);
+    return INITIAL_TABLE2_DATA;
   });
 
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile>(() => {
@@ -197,6 +210,31 @@ export default function App() {
   // Manual trigger to re-sync from Table 1 to Table 2 anytime
   const handleSyncFromTable1 = () => {
     setTable2Rows((prev) => syncTable1ToTable2(table1Rows, prev));
+    setIsSaved(false);
+  };
+
+  // Sync Table 2 current budgets back into Table 1 (current cycle)
+  const handleSyncToTable1Current = () => {
+    const updatedT1 = syncTable2ToTable1(table2Rows, table1Rows);
+    setTable1Rows(updatedT1);
+    setAopRows(buildAopRowsFromBsp(updatedT1, table2Rows));
+    setIsSaved(false);
+  };
+
+  // Roll forward to Next Year: apply Table 2 (N+1 -> Financial Law, N+2 -> Target N+1) into Table 1 Performance Targets
+  const handleApplyNextYearToTable1 = () => {
+    const { nextTable1, nextTable2 } = applyTable2NextYearToTable1(table1Rows, table2Rows);
+    setTable1Rows(nextTable1);
+    setTable2Rows(nextTable2);
+    setSchoolProfile((prev) => ({
+      ...prev,
+      yearNMinus1: prev.yearNMinus1 + 1,
+      yearN: prev.yearN + 1,
+      yearN1: prev.yearN1 + 1,
+      yearN2: prev.yearN2 + 1,
+      yearN3: prev.yearN3 + 1,
+    }));
+    setAopRows(buildAopRowsFromBsp(nextTable1, nextTable2));
     setIsSaved(false);
   };
 
@@ -402,7 +440,7 @@ export default function App() {
       )
     ) {
       const resetT1 = INITIAL_TABLE1_DATA;
-      const resetT2 = syncTable1ToTable2(resetT1, INITIAL_TABLE2_DATA);
+      const resetT2 = INITIAL_TABLE2_DATA;
       setTable1Rows(resetT1);
       setTable2Rows(resetT2);
       setAopRows(buildAopRowsFromBsp(resetT1, resetT2));
@@ -527,6 +565,8 @@ export default function App() {
             rows={table1Rows}
             onUpdateRow={handleUpdateTable1Row}
             schoolProfile={schoolProfile}
+            onSyncFromTable2Current={handleSyncToTable1Current}
+            onApplyNextYearFromTable2={handleApplyNextYearToTable1}
             onOpenAICopilot={() => setIsAICopilotOpen(true)}
           />
         )}
@@ -538,6 +578,8 @@ export default function App() {
             onUpdateActivityBudget={handleUpdateActivityBudget}
             schoolProfile={schoolProfile}
             onSyncFromTable1={handleSyncFromTable1}
+            onApplyNextYearToTable1={handleApplyNextYearToTable1}
+            onNavigateToTable1={() => setActiveTab('table1')}
             onOpenAICopilot={() => setIsAICopilotOpen(true)}
           />
         )}

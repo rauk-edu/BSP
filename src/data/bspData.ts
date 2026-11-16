@@ -1989,30 +1989,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "GRAND_TOTAL",
     "code": "សរុប",
     "activity": "សរុប",
-    "yearN": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN1": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN2": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN3": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    }
+    "yearN": { "state": "13,093,100", "partner": "0", "community": "0", "other": "0" },
+    "yearN1": { "state": "13,903,100", "partner": "0", "community": "0", "other": "0" },
+    "yearN2": { "state": "13,953,100", "partner": "0", "community": "0", "other": "0" },
+    "yearN3": { "state": "14,071,000", "partner": "0", "community": "0", "other": "0" }
   },
   {
     "id": "t2_3",
@@ -2021,30 +2001,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "STANDARD_HEADER",
     "code": "ស្តង់ដារទី១ ៖ លទ្ធផលសិក្សារបស់សិស្ស",
     "activity": "ស្តង់ដារទី១ ៖ លទ្ធផលសិក្សារបស់សិស្ស",
-    "yearN": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN1": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN2": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN3": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    }
+    "yearN": { "state": "2,460,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN1": { "state": "2,920,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN2": { "state": "2,720,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN3": { "state": "2,721,000", "partner": "0", "community": "0", "other": "0" }
   },
   {
     "id": "t2_4",
@@ -2053,30 +2013,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "១. ការប្រមូលកុមារចូលរៀន",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "200,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_5",
@@ -2085,30 +2025,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "២. កុមាររៀនបានគង់វង្សក្នុងសាលារៀន",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "400,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_6",
@@ -2117,30 +2037,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៣. លទ្ធផលសិក្សារបស់សិស្ស",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "1,160,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "1,420,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "1,420,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "1,421,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_7",
@@ -2149,30 +2049,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៤. ស្ថានភាពអាហារូបត្ថម្ភ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "300,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "300,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "300,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "300,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_8",
@@ -2181,30 +2061,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៥. សីលធម៌ និងវិន័យសិស្ស",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "400,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_9",
@@ -2213,30 +2073,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "STANDARD_HEADER",
     "code": "ស្តង់ដារទី២ ៖ ការបង្រៀន និងរៀន",
     "activity": "ស្តង់ដារទី២ ៖ ការបង្រៀន និងរៀន",
-    "yearN": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN1": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN2": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN3": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    }
+    "yearN": { "state": "5,983,100", "partner": "0", "community": "0", "other": "0" },
+    "yearN1": { "state": "5,983,100", "partner": "0", "community": "0", "other": "0" },
+    "yearN2": { "state": "5,983,100", "partner": "0", "community": "0", "other": "0" },
+    "yearN3": { "state": "5,600,000", "partner": "0", "community": "0", "other": "0" }
   },
   {
     "id": "t2_10",
@@ -2245,30 +2085,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "១. ការអនុវត្តវិធីសាស្ត្របង្រៀន",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "1,400,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "1,400,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "1,400,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "1,400,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_11",
@@ -2277,30 +2097,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "២. ការអនុវត្តវិធីសិក្សា និងការបង្រៀន",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "783,100", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "783,100", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "783,100", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "600,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_12",
@@ -2309,30 +2109,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៣. សម្ភាររៀន និងបង្រៀន",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "1,700,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "1,700,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "1,700,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "1,500,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_13",
@@ -2341,30 +2121,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៤. ការជួយគាំទ្រសិស្ស",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "200,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_14",
@@ -2373,30 +2133,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៥. ដំណើរការបណ្ណាល័យ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "600,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "600,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "600,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "600,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_15",
@@ -2405,30 +2145,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៦. ការធ្វើអធិការកិច្ចផ្ទៃក្នុង",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "100,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_16",
@@ -2437,30 +2157,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៧. ការប្រជុំបច្ចេកទេស",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "200,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_17",
@@ -2469,30 +2169,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៨. ការអនុវត្តកិច្ចសិក្សាក្រៅម៉ោង",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "800,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "800,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "800,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "800,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_18",
@@ -2501,30 +2181,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៩. ការអនុវត្តកម្រិតសីលធម៌ ចរិយាមរិយា",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "200,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_19",
@@ -2533,30 +2193,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "STANDARD_HEADER",
     "code": "ស្តង់ដារទី៣ ៖ ការចូលរួមពីសហគមន៍",
     "activity": "ស្តង់ដារទី៣ ៖ ការចូលរួមពីសហគមន៍",
-    "yearN": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN1": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN2": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN3": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    }
+    "yearN": { "state": "700,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN1": { "state": "700,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN2": { "state": "1,000,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN3": { "state": "1,200,000", "partner": "0", "community": "0", "other": "0" }
   },
   {
     "id": "t2_20",
@@ -2565,30 +2205,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "១. ការបង្កើត និងដំណើរការគណៈកម្មការគ្រប់គ្រងសាលារៀន និងថ្នាក់រៀន",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "500,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "500,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "500,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "1,000,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_21",
@@ -2597,30 +2217,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "២. ការចូលរួមរបស់សហគមន៍",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "100,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_22",
@@ -2629,30 +2229,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៣. ការគាំទ្ររបស់សហគមន៍",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "100,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_23",
@@ -2661,30 +2241,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "STANDARD_HEADER",
     "code": "ស្តង់ដារទី៤ ៖ អភិបាលកិច្ចសាលារៀន",
     "activity": "ស្តង់ដារទី៤ ៖ អភិបាលកិច្ចសាលារៀន",
-    "yearN": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN1": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN2": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN3": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    }
+    "yearN": { "state": "3,150,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN1": { "state": "3,300,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN2": { "state": "3,250,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN3": { "state": "3,550,000", "partner": "0", "community": "0", "other": "0" }
   },
   {
     "id": "t2_24",
@@ -2693,30 +2253,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "១. ការគ្រប់គ្រងរដ្ឋបាលទូទៅ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "700,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "700,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "700,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "700,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_25",
@@ -2725,30 +2265,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "២. ការរៀបចំផែនការអភិវឌ្ឍន៍សាលារៀន",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "300,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "400,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_26",
@@ -2757,30 +2277,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៣. ការវាយតម្លៃបំពេញការងាររបស់បុគ្គលិក",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "50,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "100,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "50,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "300,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_27",
@@ -2789,30 +2289,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៤. វាយតម្លៃលទ្ធផលសិក្សា",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "150,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "150,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "150,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "200,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_28",
@@ -2821,30 +2301,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៥. ការលើកកម្ពស់សុខភាពសិក្សា និងអាហារូបត្ថម្ភ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "850,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "850,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "850,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "850,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_29",
@@ -2853,30 +2313,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៦. ការអភិវឌ្ឍន៍ហេដ្ឋារចនាសម្ព័ន្ធ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "1,100,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "1,100,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "1,100,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "1,100,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_30",
@@ -2885,30 +2325,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "STANDARD_HEADER",
     "code": "ស្តង់ដារទី៥ ៖ គណនេយ្យភាព",
     "activity": "ស្តង់ដារទី៥ ៖ គណនេយ្យភាព",
-    "yearN": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN1": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN2": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    },
-    "yearN3": {
-      "state": "0",
-      "partner": "0",
-      "community": "0",
-      "other": "0"
-    }
+    "yearN": { "state": "800,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN1": { "state": "1,000,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN2": { "state": "1,000,000", "partner": "0", "community": "0", "other": "0" },
+    "yearN3": { "state": "1,000,000", "partner": "0", "community": "0", "other": "0" }
   },
   {
     "id": "t2_31",
@@ -2917,30 +2337,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "១. ថវិកាសាធារណៈ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "200,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_32",
@@ -2949,30 +2349,10 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "២. ការផ្សព្វផ្សាយព័ត៌មានជាសាធារណៈ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "200,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "400,000", "partner": "", "community": "", "other": "" }
   },
   {
     "id": "t2_33",
@@ -2981,29 +2361,9 @@ export const INITIAL_TABLE2_DATA: ActivityBudgetRow[] = [
     "category": "ACTIVITY",
     "code": "",
     "activity": "៣. ការទទួលបានការគាំទ្រពីថ្នាក់ជាតិ",
-    "yearN": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN1": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN2": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    },
-    "yearN3": {
-      "state": "",
-      "partner": "",
-      "community": "",
-      "other": ""
-    }
+    "yearN": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN1": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN2": { "state": "400,000", "partner": "", "community": "", "other": "" },
+    "yearN3": { "state": "400,000", "partner": "", "community": "", "other": "" }
   }
 ];

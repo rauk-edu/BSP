@@ -1,4 +1,5 @@
 import { IndicatorRow, ActivityBudgetRow } from './bspData';
+import { parseNumber, formatRiel, computeTable2Summaries } from '../utils/bspUtils';
 
 export interface AopIndicatorRow {
   id: string;
@@ -21,14 +22,29 @@ export interface AopIndicatorRow {
  * - code, title, category, standardId, rowIdx
  * - currentResultN = table1 row.targetN (លទ្ធផលឆ្នាំបច្ចុប្បន្ន N)
  * - targetBudgetN1 = table1 row.targetNPlus1 (គោលដៅ N+1)
- * - stateBudgetN1 = table1 row.budgetYearN1 or targetNPlus1
- * - nonStateBudgetN1 = calculated or user-entered non-state funds
+ * - stateBudgetN1 = table1 row.budgetYearN1
+ * - nonStateBudgetN1 = partner + community + other from matching Table 2 yearN1 row
  * - totalBudgetN1 = stateBudgetN1 + nonStateBudgetN1
  */
 export function buildAopRowsFromBsp(
   table1Rows: IndicatorRow[],
   table2Rows?: ActivityBudgetRow[]
 ): AopIndicatorRow[] {
+  // Build 1-to-1 map from Table 1 KEY_INDICATOR to Table 2 ACTIVITY
+  const keyToAct = new Map<string, ActivityBudgetRow>();
+  const t2Summaries = table2Rows ? computeTable2Summaries(table2Rows) : null;
+
+  if (table2Rows) {
+    for (let stdId = 1; stdId <= 5; stdId++) {
+      const t1Keys = table1Rows.filter((r) => r.category === 'KEY_INDICATOR' && r.standardId === stdId);
+      const t2Acts = table2Rows.filter((r) => r.category === 'ACTIVITY' && r.standardId === stdId);
+      const count = Math.min(t1Keys.length, t2Acts.length);
+      for (let i = 0; i < count; i++) {
+        keyToAct.set(t1Keys[i].id, t2Acts[i]);
+      }
+    }
+  }
+
   return table1Rows.map((row) => {
     // Determine unit
     let unit = '';
@@ -47,10 +63,31 @@ export function buildAopRowsFromBsp(
       unit = 'របាយការណ៍';
     }
 
-    // Clean initial values
     const currentN = row.targetN || '';
     const targetN1 = row.targetNPlus1 || '';
     const stateBud = row.budgetYearN1 || (row.category === 'GRAND_TOTAL' ? '13,953,100' : '');
+
+    // Compute non-state budget from Table 2 yearN1 (partner + community + other)
+    let nonStateNum = 0;
+    if (row.category === 'GRAND_TOTAL' && t2Summaries) {
+      const y = t2Summaries.grandTotal.yearN1;
+      nonStateNum = y.partner + y.community + y.other;
+    } else if (row.category === 'STANDARD_HEADER' && t2Summaries) {
+      const y = t2Summaries.standardTotals[row.standardId]?.yearN1;
+      if (y) nonStateNum = y.partner + y.community + y.other;
+    } else if (row.category === 'KEY_INDICATOR') {
+      const act = keyToAct.get(row.id);
+      if (act) {
+        nonStateNum =
+          parseNumber(act.yearN1.partner) +
+          parseNumber(act.yearN1.community) +
+          parseNumber(act.yearN1.other);
+      }
+    }
+
+    const nonStateBud = nonStateNum > 0 ? formatRiel(nonStateNum) : '';
+    const stateNum = parseNumber(stateBud);
+    const totalBud = stateNum + nonStateNum > 0 ? formatRiel(stateNum + nonStateNum) : stateBud;
 
     return {
       id: `aop_${row.id}`,
@@ -63,8 +100,8 @@ export function buildAopRowsFromBsp(
       currentResultN: currentN,
       targetBudgetN1: targetN1,
       stateBudgetN1: stateBud,
-      nonStateBudgetN1: '',
-      totalBudgetN1: stateBud,
+      nonStateBudgetN1: nonStateBud,
+      totalBudgetN1: totalBud,
     };
   });
 }
